@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <head>
+  <meta charset="UTF-8">
+  <title>Foundation Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+ </head>
+ <body>
+ <script>
+ 
+  let  humanScore = 0;
+  let  computerScore = 0;
+  const maxTools = 3 ;
+  const tools = ["rock", "paper", "scissors"];
+  
+  function getComputerChoice(){
+  let offset=0;
+   //randomly returns rock paper or scissors
+   return(Math.floor((Math.random())*maxTools)+ offset);
+  }
+  
+  function getHumanChoice() {
+     humanChoice=prompt("Enter Choice").toLowerCase();
+     return tools.indexOf(humanChoice);
+  }
+ 
+  function playRound(humanChoice, computerChoice) 
+  { 
+    console.log(humanChoice, computerChoice);
+
+    if (computerChoice > humanChoice || (computerChoice === 0 && humanChoice === 2)) {
+      console.log(`you lose ${tools[computerChoice]} beats ${tools[humanChoice]}`)
+      computerScore++;   //increment computer score
+    }
+    else if (computerChoice === humanChoice)
+    {
+      console.log(`its a tie ${tools[humanChoice]} and  ${tools[computerChoice]}`)
+    }
+    else {
+      console.log(`you win ${tools[humanChoice]} beats ${tools[computerChoice]}`)
+      humanScore++;   //increment human score
+    }
+  }
+  
+  function playGame() {
+
+    for(let i = 0; i < 5 ;i++) {
+        //console.log(tools[getComputerChoice()]);
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        console.log(`Your score is ${humanScore}, computer score is ${computerScore}`);
+        console.log("");
+    }
+      if (humanScore > computerScore)
+        console.log(`Game over, you win! ${humanScore} to  ${computerScore}`);
+      else 
+        console.log(`Game over, you lose! ${computerScore} to ${humanScore}`);
+  }
+
+   playGame();
+
+ </script>
+</body>
+</html>
